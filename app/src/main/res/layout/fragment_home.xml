@@ -6,17 +6,79 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
+    <ImageButton
+        android:id="@+id/sentimentHappy"
+        android:layout_width="@dimen/sentiment_button_size"
+        android:layout_height="@dimen/sentiment_button_size"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginEnd="64dp"
+        android:backgroundTint="#00FFFFFF"
+        android:contentDescription="@string/sentiment_happy"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/baseline_sentiment_satisfied_alt_24"
+        app:layout_constraintEnd_toStartOf="@+id/sentimentNeutral"
+        app:layout_constraintTop_toBottomOf="@+id/journalEditText"
+        app:tint="@color/purple_500" />
+
+    <ImageButton
+        android:id="@+id/sentimentNeutral"
+        android:layout_width="@dimen/sentiment_button_size"
+        android:layout_height="@dimen/sentiment_button_size"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#00FFFFFF"
+        android:contentDescription="@string/sentiment_neutral"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/baseline_sentiment_neutral_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/journalEditText"
+        app:tint="@color/purple_500" />
+
+    <ImageButton
+        android:id="@+id/sentimentSad"
+        android:layout_width="@dimen/sentiment_button_size"
+        android:layout_height="@dimen/sentiment_button_size"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:backgroundTint="#00FFFFFF"
+        android:contentDescription="@string/sentiment_sad"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/baseline_sentiment_very_dissatisfied_24"
+        app:layout_constraintStart_toEndOf="@+id/sentimentNeutral"
+        app:layout_constraintTop_toBottomOf="@+id/journalEditText"
+        app:tint="@color/purple_500" />
+
     <TextView
-        android:id="@+id/text_home"
+        android:id="@+id/greetingPlaceholder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/greeting_placeholder"
+        android:textAlignment="textStart"
+        android:textSize="45sp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="177dp" />
+
+    <EditText
+        android:id="@+id/journalEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:lines="15"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        android:hint="@string/how_are_you_feeling_today"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/greetingPlaceholder"
+        android:imeOptions="actionDone"
+        android:importantForAutofill="no" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
