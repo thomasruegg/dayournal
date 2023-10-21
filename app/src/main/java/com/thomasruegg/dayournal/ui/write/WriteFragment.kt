@@ -1,4 +1,4 @@
-package com.thomasruegg.dayournal.ui.home
+package com.thomasruegg.dayournal.ui.write
 
 import android.os.Bundle
 import android.text.Editable
@@ -11,7 +11,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.thomasruegg.dayournal.R
-import com.thomasruegg.dayournal.databinding.FragmentHomeBinding
+import com.thomasruegg.dayournal.databinding.FragmentWriteBinding
+import com.thomasruegg.dayournal.model.JournalEntry
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -20,9 +21,9 @@ import java.util.Locale
 /**
  * A fragment for creating new journal entries.
  */
-class HomeFragment : Fragment() {
+class WriteFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentWriteBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -54,7 +55,7 @@ class HomeFragment : Fragment() {
         val homeViewModel =
             ViewModelProvider(this)[HomeViewModel::class.java]
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentWriteBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val greetingPlaceholder: TextView = binding.greetingPlaceholder
@@ -87,7 +88,7 @@ class HomeFragment : Fragment() {
         }
 
         override fun afterTextChanged(s: Editable) {
-            val journalEntryText = s.toString()
+//            val journalEntryText = s.toString()
             // Now you can use journalEntryText as you wish
 
         }

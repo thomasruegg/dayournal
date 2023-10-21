@@ -1,4 +1,4 @@
-package com.thomasruegg.dayournal.ui.dashboard
+package com.thomasruegg.dayournal.ui.entries
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.thomasruegg.dayournal.R
 import com.thomasruegg.dayournal.model.JournalEntry
-import com.thomasruegg.dayournal.ui.dashboard.JournalEntryListAdapter.JournalEntryViewHolder
+import com.thomasruegg.dayournal.ui.entries.JournalEntryListAdapter.JournalEntryViewHolder
 
 class JournalEntryListAdapter : ListAdapter<JournalEntry, JournalEntryViewHolder>(JournalEntryComparator()) {
 

@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">dayournal</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_write">Write</string>
+    <string name="title_entries">Entries</string>
+    <string name="title_statistics">Stats</string>
     <string name="sentiment_happy">happy sentiment</string>
     <string name="sentiment_neutral">neutral sentiment</string>
     <string name="sentiment_sad">sad sentiment</string>

@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_write">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.thomasruegg.dayournal.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_write"
+        android:name="com.thomasruegg.dayournal.ui.write.WriteFragment"
+        android:label="@string/title_write"
+        tools:layout="@layout/fragment_write" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.thomasruegg.dayournal.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_entries"
+        android:name="com.thomasruegg.dayournal.ui.entries.EntriesFragment"
+        android:label="@string/title_entries"
+        tools:layout="@layout/fragment_entries" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.thomasruegg.dayournal.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_statistics"
+        android:name="com.thomasruegg.dayournal.ui.statistics.StatisticsFragment"
+        android:label="@string/title_statistics"
+        tools:layout="@layout/fragment_statistics" />
 </navigation>

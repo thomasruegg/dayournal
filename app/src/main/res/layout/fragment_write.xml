@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.write.WriteFragment">
+
+    <TextView
+        android:id="@+id/greetingPlaceholder"
+        style="@style/TextAppearance.Material3.HeadlineLarge"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/greeting_placeholder"
+        android:textAlignment="textStart"
+        android:textSize="45sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="@string/date_string_placeholder"
+        android:textAlignment="textStart"
+        app:layout_constraintStart_toStartOf="@+id/greetingPlaceholder"
+        app:layout_constraintTop_toBottomOf="@+id/greetingPlaceholder" />
+
+    <EditText
+        android:id="@+id/journalEditText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="@string/how_are_you_feeling_today"
+        android:imeOptions="actionDone"
+        android:importantForAutofill="no"
+        android:inputType="textMultiLine"
+        android:textColorHint="#8D6E63"
+        app:layout_constraintBottom_toTopOf="@+id/sentimentImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dateTextView"
+        tools:ignore="VisualLintTextFieldSize" />
+
+
+    <ImageView
+        android:id="@+id/sentimentImage"
+        android:layout_width="@dimen/home_rating_icon_size"
+        android:layout_height="@dimen/home_rating_icon_size"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:contentDescription="@string/sentiment_happy"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:src="@drawable/baseline_sentiment_satisfied_alt_24"
+        app:layout_constraintBottom_toTopOf="@+id/nutritionImage"
+        app:layout_constraintStart_toStartOf="@+id/journalEditText"
+        app:tint="?attr/colorPrimary" />
+
+    <RatingBar
+        android:id="@+id/sentimentRatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        app:layout_constraintStart_toEndOf="@+id/sentimentImage"
+        app:layout_constraintTop_toTopOf="@+id/sentimentImage" />
+
+    <ImageView
+        android:id="@+id/nutritionImage"
+        android:layout_width="@dimen/home_rating_icon_size"
+        android:layout_height="@dimen/home_rating_icon_size"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:contentDescription="@string/nutrition"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:src="@drawable/baseline_restaurant_24"
+        app:layout_constraintBottom_toTopOf="@+id/movementImage"
+        app:layout_constraintStart_toStartOf="@+id/journalEditText"
+        app:tint="?attr/colorPrimary" />
+
+    <RatingBar
+        android:id="@+id/nutritionRatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        app:layout_constraintStart_toEndOf="@+id/nutritionImage"
+        app:layout_constraintTop_toTopOf="@+id/nutritionImage" />
+
+    <ImageView
+        android:id="@+id/movementImage"
+        android:layout_width="@dimen/home_rating_icon_size"
+        android:layout_height="@dimen/home_rating_icon_size"
+        android:layout_marginBottom="32dp"
+        android:contentDescription="@string/movement"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:src="@drawable/baseline_directions_run_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/journalEditText"
+        app:tint="?attr/colorPrimary" />
+
+    <RatingBar
+        android:id="@+id/movementRatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        app:layout_constraintStart_toEndOf="@+id/movementImage"
+        app:layout_constraintTop_toTopOf="@+id/movementImage" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:clickable="true"
+        android:contentDescription="@string/save"
+        android:focusable="true"
+        android:src="@drawable/baseline_save_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
