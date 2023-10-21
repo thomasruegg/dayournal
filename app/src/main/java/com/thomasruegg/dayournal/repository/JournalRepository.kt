@@ -16,8 +16,7 @@ class JournalRepository(private val journalDao: JournalDao) {
     // When using a Flow object, Room already executes this on a background thread
     val allEntries: Flow<List<JournalEntry>> = journalDao.getAllEntries()
 
-    @Suppress("RedundantSuspendModifier")
-    suspend fun getSpecificDateEntry(date: String): Flow<List<JournalEntry>> {
+    fun getSpecificDateEntry(date: String): Flow<List<JournalEntry>> {
         return journalDao.getSpecificDateEntry(date)
     }
     @Suppress("RedundantSuspendModifier")

@@ -9,9 +9,10 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.thomasruegg.dayournal.dao.JournalDao
 import com.thomasruegg.dayournal.model.JournalEntry
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = [JournalEntry::class], version = 1, exportSchema = false)
+@Database(entities = [JournalEntry::class], version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun journalDao(): JournalDao
@@ -23,20 +24,38 @@ abstract class AppDatabase : RoomDatabase() {
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)
             INSTANCE?.let { database ->
-                scope.launch {
+                scope.launch(Dispatchers.IO) {
                     populateDatabase(database.journalDao())
                 }
             }
         }
 
+        @Suppress("RedundantSuspendModifier") // suspend is needed!
         suspend fun populateDatabase(journalDao: JournalDao) {
-            // Delete all content here.
+            // Delete all content
             journalDao.deleteAll()
 
-            // Add sample words.
-            var entry = JournalEntry(1, "Hello", "2020-01-01") // todo remove id from constructor, should be autoincrement
+            // Add sample entries
+            var entry = JournalEntry(
+                "2023-10-19",
+                "This morning felt like a breath of fresh air. The birds were chirping, and the sun peeked through the curtains as I slowly woke up. For breakfast, I had a wholesome oatmeal bowl topped with fruits and a touch of honey. Though work usually pervades my thoughts, today was different. I took a gentle walk in the garden, feeling the cool breeze on my face. The tranquility brought a sense of clarity, making me feel present and grateful. Even a brief escape from the digital screens felt rejuvenating.",
+                4.5F,
+                4F,
+                3F)
             journalDao.insert(entry)
-            entry = JournalEntry(2, "World!", "2020-01-02")
+            entry = JournalEntry(
+                "2023-10-20",
+                "Yesterday was a day of culinary exploration. Inspired by a cooking show, I decided to try my hand at making homemade pasta. The process was therapeutic, rolling out the dough and cutting it into fettuccine. The result was a delicious plate of pasta, which I enjoyed with a glass of wine. Though the process kept me on my feet, it wasn't a vigorous activity. The laughter and stories shared with my roommate over dinner filled the room with warmth, a pleasant deviation from the routine.",
+                4F,
+                4.5F,
+                2.5F)
+            journalDao.insert(entry)
+            entry = JournalEntry(
+                "2023-10-21",
+                "Last night, I discovered a lively dance class in the neighborhood and decided to join on a whim. The energetic beats and rhythmic movements took over, making me forget about the day's stresses. For those moments, I was lost in the rhythm, feeling every beat. I hadn't realized how much I missed dancing. After the class, I grabbed a smoothie which was nutritious but slightly on the lighter side. Dancing invigorated my soul and provided a full-body workout, a perfect blend of joy and movement.",
+                5F,
+                3.5F,
+                5F)
             journalDao.insert(entry)
             Log.d("AppDatabase", "Populated database")
         }

@@ -7,6 +7,7 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.thomasruegg.dayournal.model.JournalEntry
 import com.thomasruegg.dayournal.repository.JournalRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class JournalViewModel(private val repository: JournalRepository) : ViewModel() {
@@ -19,14 +20,13 @@ class JournalViewModel(private val repository: JournalRepository) : ViewModel() 
      */
     val allEntries: LiveData<List<JournalEntry>> = repository.allEntries.asLiveData()
 
-    suspend fun getSpecificDateEntry(date: String): LiveData<List<JournalEntry?>> { // TODO weird. not sure if suspend should to be there
+    // As we are receiving a Flow object in this method, it doesn't need to be a suspend function
+    fun getSpecificDateEntry(date: String): LiveData<List<JournalEntry>> {
         return repository.getSpecificDateEntry(date).asLiveData()
     }
 
-    /**
-     * Launching a new coroutine to insert the data in a non-blocking way
-     */
-    fun insert(entry: JournalEntry) = viewModelScope.launch {
+    // Launching a new coroutine to insert the data in a non-blocking way
+    fun insert(entry: JournalEntry) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(entry)
     }
 

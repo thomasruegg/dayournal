@@ -5,8 +5,10 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "journal_entries")
 data class JournalEntry(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
+    @PrimaryKey()
+    val date: String,
     val content: String,
-    val date: String
+    val sentimentRating: Float,
+    val nutritionRating: Float,
+    val movementRating: Float
 )
