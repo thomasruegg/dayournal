@@ -3,20 +3,28 @@ package com.thomasruegg.dayournal.ui.write
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import com.thomasruegg.dayournal.R
+import com.thomasruegg.dayournal.database.AppDatabase
 import com.thomasruegg.dayournal.databinding.FragmentWriteBinding
 import com.thomasruegg.dayournal.model.JournalEntry
-import java.text.SimpleDateFormat
+import com.thomasruegg.dayournal.repository.JournalRepository
+import com.thomasruegg.dayournal.util.DateUtil.Companion.getDatabaseStringOfToday
+import com.thomasruegg.dayournal.util.DateUtil.Companion.getFullDateString
+import com.thomasruegg.dayournal.viewmodel.JournalViewModel
+import com.thomasruegg.dayournal.viewmodel.JournalViewModelFactory
 import java.util.Calendar
-import java.util.Date
-import java.util.Locale
 
 /**
  * A fragment for creating new journal entries.
@@ -29,15 +37,10 @@ class WriteFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private fun getFormattedDateString(): String {
-        val sdf = SimpleDateFormat("EEEE, d MMMM yyyy", Locale.getDefault())
-        return sdf.format(Date())
-    }
-
-    private fun greetingMessage() : String {
+    private fun greetingMessage(): String {
         val cal = Calendar.getInstance()
 
-        return when(cal.get(Calendar.HOUR_OF_DAY)) {
+        return when (cal.get(Calendar.HOUR_OF_DAY)) {
             in 0..11 -> getString(R.string.good_morning)
             in 12..17 -> getString(R.string.good_afternoon)
             in 18..20 -> getString(R.string.good_evening)
@@ -63,9 +66,10 @@ class WriteFragment : Fragment() {
             greetingPlaceholder.text = greetingMessage()
         }
 
+        // put today's date into the dateTextView
         val dateTextView: TextView = binding.dateTextView
         homeViewModel.text.observe(viewLifecycleOwner) {
-            dateTextView.text = getFormattedDateString()
+            dateTextView.text = getFullDateString("today")
         }
 
         return root

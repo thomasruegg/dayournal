@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.thomasruegg.dayournal.R
 import com.thomasruegg.dayournal.model.JournalEntry
 import com.thomasruegg.dayournal.ui.entries.JournalEntryListAdapter.JournalEntryViewHolder
+import com.thomasruegg.dayournal.util.DateUtil.Companion.getFullDateString
 
 class JournalEntryListAdapter : ListAdapter<JournalEntry, JournalEntryViewHolder>(JournalEntryComparator()) {
 
