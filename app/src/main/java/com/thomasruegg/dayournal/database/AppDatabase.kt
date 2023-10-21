@@ -30,8 +30,7 @@ abstract class AppDatabase : RoomDatabase() {
             }
         }
 
-        @Suppress("RedundantSuspendModifier") // suspend is needed!
-        suspend fun populateDatabase(journalDao: JournalDao) {
+        suspend fun populateDatabase(journalDao: JournalDao) { // suspend is needed!
             // Delete all content
             journalDao.deleteAll()
 
