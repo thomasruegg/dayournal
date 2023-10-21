@@ -77,9 +77,43 @@ class WriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val journalEditText: EditText = view.findViewById(R.id.journalEditText)
-        journalEditText.addTextChangedListener(JournalTextWatcher())
+        val sentimentRatingBar: RatingBar = view.findViewById(R.id.sentimentRatingBar)
+        val nutritionRatingBar: RatingBar = view.findViewById(R.id.nutritionRatingBar)
+        val movementRatingBar: RatingBar = view.findViewById(R.id.movementRatingBar)
+
+        // Obtain JournalViewModel
+        val journalViewModel = ViewModelProvider(
+            this,
+            JournalViewModelFactory(JournalRepository(AppDatabase.getDatabase(requireContext(), lifecycleScope).journalDao()))
+        )[JournalViewModel::class.java]
+
+        // Check for an existing entry for today and populate the text field if it exists
+        val todaySimpleString = getDatabaseStringOfToday()
+        journalViewModel.getSpecificDateEntry(todaySimpleString).observe(viewLifecycleOwner) { entries ->
+            Log.d("WriteFragment", "Entries: $entries")
+            if (entries.isNotEmpty()) {
+                journalEditText.setText(entries[0].content)
+                sentimentRatingBar.rating = entries[0].sentimentRating
+                nutritionRatingBar.rating = entries[0].nutritionRating
+                movementRatingBar.rating = entries[0].movementRating
+                Log.d("WriteFragment", "Text set: ${entries[0].content}")
+            }
+        }
+
+        // Save information when user presses save button.
+        val saveButton: FloatingActionButton = view.findViewById(R.id.saveButton)
+        saveButton.setOnClickListener {
+            val newEntry = JournalEntry(
+                content = journalEditText.text.toString(),
+                date = getDatabaseStringOfToday(),
+                sentimentRating = sentimentRatingBar.rating,
+                nutritionRating = nutritionRatingBar.rating,
+                movementRating = movementRatingBar.rating
+            )
+            journalViewModel.insert(newEntry)
+            Snackbar.make(view, "Entry saved", Snackbar.LENGTH_SHORT).setAnchorView(saveButton).show()
+        }
     }
 
     private inner class JournalTextWatcher : TextWatcher {

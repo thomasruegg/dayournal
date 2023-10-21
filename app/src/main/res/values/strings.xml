@@ -13,4 +13,13 @@
     <string name="good_evening">Good Evening</string>
     <string name="good_night">Good Night</string>
     <string name="hello">Hello</string>
+    <string name="date_string_placeholder">Date String Placeholder</string>
+    <string name="add">add</string>
+    <string name="edit">edit</string>
+    <string name="save">save</string>
+    <string name="nutrition">nutrition</string>
+    <string name="movement">movement</string>
+    <string name="rating_placeholder_decimal">4.5</string>
+    <string name="empty_view_text">There are no entries yet!</string>
+    <string name="sample_text">Sample Text</string>
 </resources>

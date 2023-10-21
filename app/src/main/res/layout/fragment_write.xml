@@ -57,13 +57,13 @@
 
     <ImageView
         android:id="@+id/sentimentImage"
-        android:layout_width="@dimen/home_rating_icon_size"
-        android:layout_height="@dimen/home_rating_icon_size"
+        android:layout_width="@dimen/write_rating_icon_size"
+        android:layout_height="@dimen/write_rating_icon_size"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:contentDescription="@string/sentiment_happy"
         android:scaleX="0.8"
         android:scaleY="0.8"
-        android:src="@drawable/baseline_sentiment_satisfied_alt_24"
+        android:src="@drawable/round_sentiment_satisfied_alt_24"
         app:layout_constraintBottom_toTopOf="@+id/nutritionImage"
         app:layout_constraintStart_toStartOf="@+id/journalEditText"
         app:tint="?attr/colorPrimary" />
@@ -78,13 +78,13 @@
 
     <ImageView
         android:id="@+id/nutritionImage"
-        android:layout_width="@dimen/home_rating_icon_size"
-        android:layout_height="@dimen/home_rating_icon_size"
+        android:layout_width="@dimen/write_rating_icon_size"
+        android:layout_height="@dimen/write_rating_icon_size"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:contentDescription="@string/nutrition"
         android:scaleX="0.8"
         android:scaleY="0.8"
-        android:src="@drawable/baseline_restaurant_24"
+        android:src="@drawable/round_restaurant_24"
         app:layout_constraintBottom_toTopOf="@+id/movementImage"
         app:layout_constraintStart_toStartOf="@+id/journalEditText"
         app:tint="?attr/colorPrimary" />
@@ -99,13 +99,13 @@
 
     <ImageView
         android:id="@+id/movementImage"
-        android:layout_width="@dimen/home_rating_icon_size"
-        android:layout_height="@dimen/home_rating_icon_size"
+        android:layout_width="@dimen/write_rating_icon_size"
+        android:layout_height="@dimen/write_rating_icon_size"
         android:layout_marginBottom="32dp"
         android:contentDescription="@string/movement"
         android:scaleX="0.8"
         android:scaleY="0.8"
-        android:src="@drawable/baseline_directions_run_24"
+        android:src="@drawable/round_directions_run_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/journalEditText"
         app:tint="?attr/colorPrimary" />
@@ -127,7 +127,7 @@
         android:clickable="true"
         android:contentDescription="@string/save"
         android:focusable="true"
-        android:src="@drawable/baseline_save_24"
+        android:src="@drawable/round_save_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

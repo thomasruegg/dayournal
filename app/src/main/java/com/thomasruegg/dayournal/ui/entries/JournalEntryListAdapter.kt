@@ -20,14 +20,22 @@ class JournalEntryListAdapter : ListAdapter<JournalEntry, JournalEntryViewHolder
 
     override fun onBindViewHolder(holder: JournalEntryViewHolder, position: Int) {
         val current = getItem(position)
-        holder.bind(current.content)
+        holder.bind(current.date, current.content, current.sentimentRating, current.nutritionRating, current.movementRating)
     }
 
     class JournalEntryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val journalEntryItemView: TextView = itemView.findViewById(R.id.textView)
+        private val listDateView: TextView = itemView.findViewById(R.id.listDateView)
+        private val listContentView: TextView = itemView.findViewById(R.id.listContentView)
+        private val listSentimentRating: TextView = itemView.findViewById(R.id.listSentimentRating)
+        private val listNutritionRating: TextView = itemView.findViewById(R.id.listNutritionRating)
+        private val listMovementRating: TextView = itemView.findViewById(R.id.listMovementRating)
 
-        fun bind(text: String?) {
-            journalEntryItemView.text = text
+        fun bind(date: String, content: String?, sentimentRating: Float?, nutritionRating: Float?, movementRating: Float?) {
+            listDateView.text = getFullDateString(date)
+            listContentView.text = content
+            listSentimentRating.text = sentimentRating.toString()
+            listNutritionRating.text = nutritionRating.toString()
+            listMovementRating.text = movementRating.toString()
         }
 
         companion object {

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/listDateView"
+                style="@style/TextAppearance.Material3.HeadlineMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sample_text"
+                android:background="?attr/colorPrimary"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:textAlignment="textStart"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/listSentimentImage"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:contentDescription="@string/movement"
+                android:scaleX="1"
+                android:scaleY="1"
+                android:src="@drawable/round_sentiment_satisfied_alt_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/listContentView"
+                app:layout_constraintTop_toBottomOf="@+id/listContentView"
+                app:tint="?attr/colorPrimary" />
+
+            <TextView
+                android:id="@+id/listSentimentRating"
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/rating_placeholder_decimal"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/listSentimentImage"
+                app:layout_constraintStart_toEndOf="@+id/listSentimentImage"
+                app:layout_constraintTop_toTopOf="@+id/listSentimentImage" />
+
+            <ImageView
+                android:id="@+id/listNutritionImage"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="16dp"
+                android:contentDescription="@string/movement"
+                android:scaleX="1"
+                android:scaleY="1"
+                android:src="@drawable/round_restaurant_24"
+                app:layout_constraintBottom_toBottomOf="@+id/listSentimentImage"
+                app:layout_constraintStart_toEndOf="@+id/listSentimentRating"
+                app:layout_constraintTop_toTopOf="@+id/listSentimentImage"
+                app:tint="?attr/colorPrimary" />
+
+            <TextView
+                android:id="@+id/listNutritionRating"
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/rating_placeholder_decimal"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/listNutritionImage"
+                app:layout_constraintStart_toEndOf="@+id/listNutritionImage"
+                app:layout_constraintTop_toTopOf="@+id/listNutritionImage" />
+
+            <ImageView
+                android:id="@+id/movementImage"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="16dp"
+                android:contentDescription="@string/movement"
+                android:scaleX="1"
+                android:scaleY="1"
+                android:src="@drawable/round_directions_run_24"
+                app:layout_constraintBottom_toBottomOf="@+id/listSentimentImage"
+                app:layout_constraintStart_toEndOf="@+id/listNutritionRating"
+                app:layout_constraintTop_toTopOf="@+id/listSentimentImage"
+                app:tint="?attr/colorPrimary" />
+
+            <TextView
+                android:id="@+id/listMovementRating"
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/rating_placeholder_decimal"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/movementImage"
+                app:layout_constraintStart_toEndOf="@+id/movementImage"
+                app:layout_constraintTop_toTopOf="@+id/movementImage"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/listContentView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/sample_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/listDateView"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/listSentimentImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/listSentimentImage"
+                app:srcCompat="@drawable/round_edit_24"
+                app:tint="?attr/colorPrimary"
+                android:contentDescription="@string/edit" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>
