@@ -1,8 +1,6 @@
 package com.thomasruegg.dayournal.ui.write
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -37,6 +35,14 @@ class WriteFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+
+    // needed if I want to implement saving when switching fragments
+    private lateinit var journalEditText: EditText
+    private lateinit var sentimentRatingBar: RatingBar
+    private lateinit var nutritionRatingBar: RatingBar
+    private lateinit var movementRatingBar: RatingBar
+    private lateinit var journalViewModel: JournalViewModel
+
     private fun greetingMessage(): String {
         val cal = Calendar.getInstance()
 
@@ -49,14 +55,33 @@ class WriteFragment : Fragment() {
         }
     }
 
+    // Save information when user presses save button.
+    private fun saveToDatabase(
+        journalEditText: EditText,
+        sentimentRatingBar: RatingBar,
+        nutritionRatingBar: RatingBar,
+        movementRatingBar: RatingBar,
+        journalViewModel: JournalViewModel,
+        view: View,
+        showSavedMessage: Boolean = false
+    ) {
+        val newEntry = JournalEntry(
+            content = journalEditText.text.toString(),
+            date = getDatabaseStringOfToday(),
+            sentimentRating = sentimentRatingBar.rating,
+            nutritionRating = nutritionRatingBar.rating,
+            movementRating = movementRatingBar.rating
+        )
+        journalViewModel.insert(newEntry)
+        if (showSavedMessage) {
+            Snackbar.make(view, "Entry saved", Snackbar.LENGTH_SHORT).show()
+        }
+    }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this)[HomeViewModel::class.java]
+        val homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
 
         _binding = FragmentWriteBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -77,61 +102,53 @@ class WriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val journalEditText: EditText = view.findViewById(R.id.journalEditText)
-        val sentimentRatingBar: RatingBar = view.findViewById(R.id.sentimentRatingBar)
-        val nutritionRatingBar: RatingBar = view.findViewById(R.id.nutritionRatingBar)
-        val movementRatingBar: RatingBar = view.findViewById(R.id.movementRatingBar)
+        journalEditText = view.findViewById(R.id.journalEditText)
+        sentimentRatingBar = view.findViewById(R.id.sentimentRatingBar)
+        nutritionRatingBar = view.findViewById(R.id.nutritionRatingBar)
+        movementRatingBar = view.findViewById(R.id.movementRatingBar)
 
         // Obtain JournalViewModel
-        val journalViewModel = ViewModelProvider(
-            this,
-            JournalViewModelFactory(JournalRepository(AppDatabase.getDatabase(requireContext(), lifecycleScope).journalDao()))
+        journalViewModel = ViewModelProvider(
+            this, JournalViewModelFactory(
+                JournalRepository(
+                    AppDatabase.getDatabase(
+                        requireContext(), lifecycleScope
+                    ).journalDao()
+                )
+            )
         )[JournalViewModel::class.java]
 
-        // Check for an existing entry for today and populate the text field if it exists
-        val todaySimpleString = getDatabaseStringOfToday()
-        journalViewModel.getSpecificDateEntry(todaySimpleString).observe(viewLifecycleOwner) { entries ->
-            Log.d("WriteFragment", "Entries: $entries")
-            if (entries.isNotEmpty()) {
-                journalEditText.setText(entries[0].content)
-                sentimentRatingBar.rating = entries[0].sentimentRating
-                nutritionRatingBar.rating = entries[0].nutritionRating
-                movementRatingBar.rating = entries[0].movementRating
-                Log.d("WriteFragment", "Text set: ${entries[0].content}")
+        // Check database for an existing entry for today and populate the fields if it exists
+        journalViewModel.getSpecificDateEntry(getDatabaseStringOfToday())
+            .observe(viewLifecycleOwner) { entries ->
+                Log.d("WriteFragment", "Entries: $entries")
+                if (entries.isNotEmpty()) {
+                    if (journalEditText.text.isNotEmpty() || sentimentRatingBar.rating != 0.0f || nutritionRatingBar.rating != 0.0f || movementRatingBar.rating != 0.0f) {
+                        // If the user has already filled in some data, don't overwrite it
+                        return@observe
+                    }
+                    journalEditText.setText(entries[0].content)
+                    sentimentRatingBar.rating = entries[0].sentimentRating
+                    nutritionRatingBar.rating = entries[0].nutritionRating
+                    movementRatingBar.rating = entries[0].movementRating
+                    Log.d("WriteFragment", "Text set: ${entries[0].content}")
+                }
             }
-        }
 
         // Save information when user presses save button.
         val saveButton: FloatingActionButton = view.findViewById(R.id.saveButton)
         saveButton.setOnClickListener {
-            val newEntry = JournalEntry(
-                content = journalEditText.text.toString(),
-                date = getDatabaseStringOfToday(),
-                sentimentRating = sentimentRatingBar.rating,
-                nutritionRating = nutritionRatingBar.rating,
-                movementRating = movementRatingBar.rating
+            saveToDatabase(
+                journalEditText,
+                sentimentRatingBar,
+                nutritionRatingBar,
+                movementRatingBar,
+                journalViewModel,
+                requireView(),
+                true
             )
-            journalViewModel.insert(newEntry)
-            Snackbar.make(view, "Entry saved", Snackbar.LENGTH_SHORT).setAnchorView(saveButton).show()
         }
     }
-
-    private inner class JournalTextWatcher : TextWatcher {
-        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-            // Do something before the text changes, if needed
-        }
-
-        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-            // Do something as the text is being changed, if needed
-        }
-
-        override fun afterTextChanged(s: Editable) {
-//            val journalEntryText = s.toString()
-            // Now you can use journalEntryText as you wish
-
-        }
-    }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
