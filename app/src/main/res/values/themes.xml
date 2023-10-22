@@ -1,6 +1,6 @@
 
 <resources>
-    <style name="Theme.Dayournal" parent="Theme.Material3.Light">
+    <style name="Theme.Dayournal" parent="Theme.Material3.Light.NoActionBar">
 <!--        &lt;!&ndash; Primary brand color. &ndash;&gt;-->
 <!--        <item name="colorPrimary">#B39DDB</item>-->
 <!--        <item name="colorPrimaryVariant">#CE93D8</item>-->
