@@ -4,12 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-//import androidx.lifecycle.ViewModelProvider
 import com.thomasruegg.dayournal.DayournalApplication
 import com.thomasruegg.dayournal.R
 import com.thomasruegg.dayournal.databinding.FragmentEntriesBinding
@@ -24,11 +23,21 @@ class EntriesFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private val newJournalActivityRequestCode = 1 // TODO do this whole page again https://developer.android.com/codelabs/android-room-with-a-view-kotlin#15
     private val journalViewModel: JournalViewModel by viewModels {
         JournalViewModelFactory((requireActivity().application as DayournalApplication).repository) // requireActivity. added
     }
     private val adapter = JournalEntryListAdapter()
+
+    private fun updateEmptyView(recyclerView: RecyclerView, view: View) {
+        val emptyView: TextView = view.findViewById(R.id.emptyViewText)
+        if (recyclerView.adapter?.itemCount == 0) {
+            emptyView.visibility = View.VISIBLE
+            recyclerView.visibility = View.GONE
+        } else {
+            emptyView.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,10 +68,11 @@ class EntriesFragment : Fragment() {
         // Add an observer on the LiveData returned by `allEntries`.
         // The onChanged() method fires when the observed data changes and the activity is
         // in the foreground.
-        journalViewModel.allEntries.observe(viewLifecycleOwner, Observer { journalEntries -> // viewLifecycleOwner used to be `this`
+        journalViewModel.allEntries.observe(viewLifecycleOwner) { journalEntries ->
             // Update the cached copy of the journal entries in the adapter
             journalEntries.let { adapter.submitList(it) }
-        })
+            updateEmptyView(recyclerView, view)
+        }
     }
 
     override fun onDestroyView() {
