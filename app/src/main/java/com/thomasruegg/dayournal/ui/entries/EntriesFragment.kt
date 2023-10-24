@@ -24,7 +24,7 @@ class EntriesFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val journalViewModel: JournalViewModel by viewModels {
-        JournalViewModelFactory((requireActivity().application as DayournalApplication).repository) // requireActivity. added
+        JournalViewModelFactory((requireActivity().application as DayournalApplication).repository)
     }
     private val adapter = JournalEntryListAdapter()
 
@@ -45,17 +45,7 @@ class EntriesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentEntriesBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-//        val dashboardViewModel =
-//            ViewModelProvider(this).get(DashboardViewModel::class.java)
-
-
-//        val textView: TextView = binding.textDashboard
-//        dashboardViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
-        return root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

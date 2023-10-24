@@ -81,23 +81,8 @@ class WriteFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        val homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
-
         _binding = FragmentWriteBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        val greetingPlaceholder: TextView = binding.greetingPlaceholder
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            greetingPlaceholder.text = greetingMessage()
-        }
-
-        // put today's date into the dateTextView
-        val dateTextView: TextView = binding.dateTextView
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            dateTextView.text = getFullDateString("today")
-        }
-
-        return root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -106,6 +91,12 @@ class WriteFragment : Fragment() {
         sentimentRatingBar = view.findViewById(R.id.sentimentRatingBar)
         nutritionRatingBar = view.findViewById(R.id.nutritionRatingBar)
         movementRatingBar = view.findViewById(R.id.movementRatingBar)
+
+        val greetingPlaceholder: TextView = view.findViewById(R.id.greetingPlaceholder)
+        greetingPlaceholder.text = greetingMessage()
+
+        val dateTextView: TextView = view.findViewById(R.id.dateTextView)
+        dateTextView.text = getFullDateString("today")
 
         // Obtain JournalViewModel
         journalViewModel = ViewModelProvider(
