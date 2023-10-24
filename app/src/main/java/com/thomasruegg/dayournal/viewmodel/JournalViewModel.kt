@@ -25,6 +25,10 @@ class JournalViewModel(private val repository: JournalRepository) : ViewModel() 
         return repository.getSpecificDateEntry(date).asLiveData()
     }
 
+    fun getAverageWellnessMetric(wellnessRating: String): LiveData<Float> {
+        return repository.getAverageWellnessMetric(wellnessRating).asLiveData()
+    }
+
     // Launching a new coroutine to insert the data in a non-blocking way
     fun insert(entry: JournalEntry) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(entry)

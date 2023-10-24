@@ -19,6 +19,11 @@ class JournalRepository(private val journalDao: JournalDao) {
     fun getSpecificDateEntry(date: String): Flow<List<JournalEntry>> {
         return journalDao.getSpecificDateEntry(date)
     }
+
+    fun getAverageWellnessMetric(wellnessRating: String): Flow<Float> {
+        return journalDao.getAverageWellnessMetric(wellnessRating)
+    }
+
     @Suppress("RedundantSuspendModifier")
     @WorkerThread // No Flow object, I need to write this annotation
     suspend fun insert(entry: JournalEntry) {

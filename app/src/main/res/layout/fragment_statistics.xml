@@ -6,17 +6,206 @@
     android:layout_height="match_parent"
     tools:context=".ui.statistics.StatisticsFragment">
 
-    <TextView
-        android:id="@+id/text_notifications"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/statisticsSentimentCard"
+        style="?attr/materialCardViewFilledStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="16dp"
+        android:focusable="true"
+        app:cardBackgroundColor="?attr/colorSecondaryContainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/statisticsSentimentTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/sentiment"
+                android:textAlignment="textStart"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/statisticsSentimentMessage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/on_average_your_rating_is"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                app:layout_constraintEnd_toEndOf="@+id/statisticsSentimentTitle"
+                app:layout_constraintStart_toStartOf="@+id/statisticsSentimentTitle"
+                app:layout_constraintTop_toBottomOf="@+id/statisticsSentimentTitle" />
+
+            <ImageView
+                android:id="@+id/statisticsSentimentImage"
+                android:layout_width="@dimen/write_rating_icon_size"
+                android:layout_height="@dimen/write_rating_icon_size"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:contentDescription="@string/movement"
+                android:src="@drawable/round_sentiment_satisfied_alt_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/statisticsSentimentMessage"
+                app:layout_constraintTop_toBottomOf="@+id/statisticsSentimentMessage"
+                app:tint="?attr/colorPrimary" />
+
+            <RatingBar
+                android:id="@+id/statisticsSentimentRatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:isIndicator="true"
+                app:layout_constraintStart_toEndOf="@+id/statisticsSentimentImage"
+                app:layout_constraintTop_toTopOf="@+id/statisticsSentimentImage" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/statisticsNutritionCard"
+        style="?attr/materialCardViewFilledStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:focusable="true"
+        app:cardBackgroundColor="?attr/colorSecondaryContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/statisticsSentimentCard">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/statisticsNutritionTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/nutrition"
+                android:textAlignment="textStart"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/statisticsNutritionMessage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/on_average_your_rating_is"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                app:layout_constraintEnd_toEndOf="@+id/statisticsNutritionTitle"
+                app:layout_constraintStart_toStartOf="@+id/statisticsNutritionTitle"
+                app:layout_constraintTop_toBottomOf="@+id/statisticsNutritionTitle" />
+
+            <ImageView
+                android:id="@+id/statisticsNutritionImage"
+                android:layout_width="@dimen/write_rating_icon_size"
+                android:layout_height="@dimen/write_rating_icon_size"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:contentDescription="@string/movement"
+                android:scaleX="1"
+                android:scaleY="1"
+                android:src="@drawable/round_restaurant_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/statisticsNutritionMessage"
+                app:layout_constraintTop_toBottomOf="@+id/statisticsNutritionMessage"
+                app:tint="?attr/colorPrimary" />
+
+            <RatingBar
+                android:id="@+id/statisticsNutritionRatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:isIndicator="true"
+                app:layout_constraintStart_toEndOf="@+id/statisticsNutritionImage"
+                app:layout_constraintTop_toTopOf="@+id/statisticsNutritionImage" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/statisticsMovementCard"
+        style="?attr/materialCardViewFilledStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:focusable="true"
+        app:cardBackgroundColor="?attr/colorSecondaryContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/statisticsNutritionCard">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/statisticsMovementTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/movement"
+                android:textAlignment="textStart"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/statisticsMovementMessage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/on_average_your_rating_is"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                app:layout_constraintEnd_toEndOf="@+id/statisticsMovementTitle"
+                app:layout_constraintStart_toStartOf="@+id/statisticsMovementTitle"
+                app:layout_constraintTop_toBottomOf="@+id/statisticsMovementTitle" />
+
+            <ImageView
+                android:id="@+id/statisticsMovementImage"
+                android:layout_width="@dimen/write_rating_icon_size"
+                android:layout_height="@dimen/write_rating_icon_size"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:contentDescription="@string/movement"
+                android:scaleX="1"
+                android:scaleY="1"
+                android:src="@drawable/round_directions_run_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/statisticsMovementMessage"
+                app:layout_constraintTop_toBottomOf="@+id/statisticsMovementMessage"
+                app:tint="?attr/colorPrimary" />
+
+            <RatingBar
+                android:id="@+id/statisticsMovementRatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:isIndicator="true"
+                app:layout_constraintStart_toEndOf="@+id/statisticsMovementImage"
+                app:layout_constraintTop_toTopOf="@+id/statisticsMovementImage" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
