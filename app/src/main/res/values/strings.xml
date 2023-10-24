@@ -3,9 +3,6 @@
     <string name="title_write">Write</string>
     <string name="title_entries">Entries</string>
     <string name="title_statistics">Stats</string>
-    <string name="sentiment_happy">happy sentiment</string>
-    <string name="sentiment_neutral">neutral sentiment</string>
-    <string name="sentiment_sad">sad sentiment</string>
     <string name="how_are_you_feeling_today">How are you feeling today?</string>
     <string name="greeting_placeholder">Greeting Placeholder</string>
     <string name="good_morning">Good Morning</string>
@@ -13,7 +10,7 @@
     <string name="good_evening">Good Evening</string>
     <string name="good_night">Good Night</string>
     <string name="hello">Hello</string>
-    <string name="date_string_placeholder">Date String Placeholder</string>
+    <string name="date_string_placeholder">Tuesday, October 24, 2023</string>
     <string name="add">add</string>
     <string name="edit">edit</string>
     <string name="save">save</string>
