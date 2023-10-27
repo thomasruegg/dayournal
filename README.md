@@ -8,10 +8,10 @@ You can read up on your past entries but also figure out how well you are doing 
 
 ## Screenshots
 
-<img src="img/screenshot-write.png" alt="screenshot-write.png" width="200"/>
-<img src="img/screenshot-entries.png" alt="screenshot-entries.png" width="200"/>
-<img src="img/screenshot-stats.png" alt="screenshot-stats.png" width="200"/>
-<img src="img/screenshot-entries-dark.png" alt="screenshot-entries-dark.png" width="200"/>
+<img src="img/screenshot-write.png" alt="screenshot-write.png" width="200" style="display: inline-block"/>
+<img src="img/screenshot-entries.png" alt="screenshot-entries.png" width="200" style="display: inline-block"/>
+<img src="img/screenshot-stats.png" alt="screenshot-stats.png" width="200" style="display: inline-block"/>
+<img src="img/screenshot-entries-dark.png" alt="screenshot-entries-dark.png" width="200" style="display: inline-block"/>
 
 ## Obtained Points
 
