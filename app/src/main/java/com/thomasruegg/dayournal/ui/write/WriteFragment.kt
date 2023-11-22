@@ -1,7 +1,6 @@
 package com.thomasruegg.dayournal.ui.write
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,7 +35,7 @@ class WriteFragment : Fragment() {
     private val binding get() = _binding!!
 
 
-    // needed if I want to implement saving when switching fragments
+    // needed if I want to implement saving when switching fragments in the future
     private lateinit var journalEditText: EditText
     private lateinit var sentimentRatingBar: RatingBar
     private lateinit var nutritionRatingBar: RatingBar
@@ -112,7 +111,6 @@ class WriteFragment : Fragment() {
         // Check database for an existing entry for today and populate the fields if it exists
         journalViewModel.getSpecificDateEntry(getDatabaseStringOfToday())
             .observe(viewLifecycleOwner) { entries ->
-                Log.d("WriteFragment", "Entries: $entries")
                 if (entries.isNotEmpty()) {
                     if (journalEditText.text.isNotEmpty() || sentimentRatingBar.rating != 0.0f || nutritionRatingBar.rating != 0.0f || movementRatingBar.rating != 0.0f) {
                         // If the user has already filled in some data, don't overwrite it
@@ -122,7 +120,6 @@ class WriteFragment : Fragment() {
                     sentimentRatingBar.rating = entries[0].sentimentRating
                     nutritionRatingBar.rating = entries[0].nutritionRating
                     movementRatingBar.rating = entries[0].movementRating
-                    Log.d("WriteFragment", "Text set: ${entries[0].content}")
                 }
             }
 

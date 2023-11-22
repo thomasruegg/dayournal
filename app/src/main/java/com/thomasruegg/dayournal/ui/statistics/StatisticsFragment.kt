@@ -1,7 +1,6 @@
 package com.thomasruegg.dayournal.ui.statistics
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,7 +56,6 @@ class StatisticsFragment : Fragment() {
 
         journalViewModel.getAverageWellnessMetric(wellnessName)
             .observe(viewLifecycleOwner) { wellnessFactor ->
-                Log.d("StatisticsFragment", "Average $wellnessName: $wellnessFactor")
 
                 val wellnessRatingBar = getWellnessRatingBarId(wellnessName)
                 view.findViewById<RatingBar>(wellnessRatingBar).rating = wellnessFactor

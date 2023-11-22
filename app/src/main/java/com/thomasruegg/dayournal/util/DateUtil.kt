@@ -7,7 +7,7 @@ import java.util.Locale
 
 class DateUtil {
     companion object {
-        // if there was a date passed, then 
+
         fun getDatabaseStringOfToday(): String {
             return SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date()).toString()
         }

@@ -1,7 +1,6 @@
 package com.thomasruegg.dayournal.database
 
 import android.content.Context
-import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -56,7 +55,6 @@ abstract class AppDatabase : RoomDatabase() {
                 3.5F,
                 5F)
             journalDao.insert(entry)
-            Log.d("AppDatabase", "Populated database")
         }
     }
 

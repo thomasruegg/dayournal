@@ -55,9 +55,6 @@ class EntriesFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-        // Add an observer on the LiveData returned by `allEntries`.
-        // The onChanged() method fires when the observed data changes and the activity is
-        // in the foreground.
         journalViewModel.allEntries.observe(viewLifecycleOwner) { journalEntries ->
             // Update the cached copy of the journal entries in the adapter
             journalEntries.let { adapter.submitList(it) }

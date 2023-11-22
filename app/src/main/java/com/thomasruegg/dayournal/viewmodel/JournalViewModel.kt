@@ -12,15 +12,13 @@ import kotlinx.coroutines.launch
 
 class JournalViewModel(private val repository: JournalRepository) : ViewModel() {
 
-    /*
-     Using LiveData and caching what allWords returns has several benefits:
-     - I can put an observer on the data (instead of polling for changes) and only update the
-       the UI when the data actually changes.
-     - Repository is completely separated from the UI through the ViewModel.
-     */
+    // Using LiveData and caching what the repository returns has several benefits:
+    // - I can put an observer on the data (instead of polling for changes) and only update the
+    //   the UI when the data actually changes.
+    // - Repository is completely separated from the UI through the ViewModel.
     val allEntries: LiveData<List<JournalEntry>> = repository.allEntries.asLiveData()
 
-    // As we are receiving a Flow object in this method, it doesn't need to be a suspend function
+    // As I am receiving a Flow object in this method, it doesn't need to be a suspend function
     fun getSpecificDateEntry(date: String): LiveData<List<JournalEntry>> {
         return repository.getSpecificDateEntry(date).asLiveData()
     }

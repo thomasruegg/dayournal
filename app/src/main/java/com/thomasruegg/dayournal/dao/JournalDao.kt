@@ -26,14 +26,14 @@ interface JournalDao {
     fun getSpecificDateEntry(date: String): Flow<List<JournalEntry>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(entry: JournalEntry): Long // used to have suspend here
+    fun insert(entry: JournalEntry): Long
 
     @Update
-    fun update(entry: JournalEntry): Int // used to have suspend here
+    fun update(entry: JournalEntry): Int
 
     @Delete
-    fun delete(entry: JournalEntry): Int // used to have suspend here
+    fun delete(entry: JournalEntry): Int
 
     @Query("DELETE FROM journal_entries")
-    fun deleteAll(): Int // used to have suspend here
+    fun deleteAll(): Int
 }

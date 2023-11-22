@@ -5,11 +5,8 @@ import com.thomasruegg.dayournal.dao.JournalDao
 import com.thomasruegg.dayournal.model.JournalEntry
 import kotlinx.coroutines.flow.Flow
 
-/**
- * Abstracted Repository as promoted by the Architecture Guide.
- * https://developer.android.com/topic/libraries/architecture/guide.html
- *
- */
+// Abstracted Repository as promoted by the Architecture Guide:
+// https://developer.android.com/topic/libraries/architecture/guide.html
 
 class JournalRepository(private val journalDao: JournalDao) {
 
@@ -25,7 +22,7 @@ class JournalRepository(private val journalDao: JournalDao) {
     }
 
     @Suppress("RedundantSuspendModifier")
-    @WorkerThread // No Flow object, I need to write this annotation
+    @WorkerThread // No Flow object, therefore I need to write this annotation
     suspend fun insert(entry: JournalEntry) {
         journalDao.insert(entry)
     }
