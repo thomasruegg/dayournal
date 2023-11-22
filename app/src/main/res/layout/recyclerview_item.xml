@@ -132,6 +132,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:contentDescription="@string/edit"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/listSentimentImage"
                 app:layout_constraintEnd_toEndOf="@+id/listContentView"
                 app:layout_constraintTop_toTopOf="@+id/listSentimentImage"
