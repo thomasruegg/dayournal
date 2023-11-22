@@ -20,7 +20,7 @@
     <string name="rating_placeholder_decimal">4.5</string>
     <string name="empty_view_text">There are no entries yet.</string>
     <string name="sample_text">Sample Text</string>
-    <string name="very_low">very bad</string>
+    <string name="very_low">very low</string>
     <string name="low">low</string>
     <string name="neutral">neutral</string>
     <string name="high">high</string>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">dayournal</string>
+    <string name="title_write">Erfassen</string>
+    <string name="title_entries">Einträge</string>
+    <string name="title_statistics">Statistik</string>
+    <string name="how_are_you_feeling_today">Wie fühlst du dich heute?</string>
+    <string name="greeting_placeholder">Begrüssungsplatzhalter</string>
+    <string name="good_morning">Guten Morgen</string>
+    <string name="good_afternoon">Guten Nachmittag</string>
+    <string name="good_evening">Guten Abend</string>
+    <string name="good_night">Gute Nacht</string>
+    <string name="hello">Hallo</string>
+    <string name="date_string_placeholder">Donnerstag, 24. Oktober, 2023</string>
+    <string name="add">hinzufügen</string>
+    <string name="edit">bearbeiten</string>
+    <string name="save">speichern</string>
+    <string name="sentiment">Sentiment</string>
+    <string name="nutrition">Essen</string>
+    <string name="movement">Bewegung</string>
+    <string name="rating_placeholder_decimal">4.5</string>
+    <string name="empty_view_text">Noch keine Einträge vorhanden</string>
+    <string name="sample_text">Beispieltext</string>
+    <string name="very_low">sehr tief</string>
+    <string name="low">tief</string>
+    <string name="neutral">neutral</string>
+    <string name="high">hoch</string>
+    <string name="very_high">sehr hoch</string>
+    <string name="on_average_your_rating_is">Im Durchschnitt ist deine %1$s Bewertung %2$s.</string>
+</resources>
