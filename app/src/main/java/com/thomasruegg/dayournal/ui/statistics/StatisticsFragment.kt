@@ -72,9 +72,14 @@ class StatisticsFragment : Fragment() {
                         in 4.0..5.0 -> getString(R.string.very_high)
                         else -> throw IllegalArgumentException("Unknown wellness name: $wellnessName")
                     }
-                val pureWellnessName = wellnessName.replace("Rating", "")
+                val translatedWellnessName = when (wellnessName.replace("Rating", "")) {
+                    "sentiment" -> getString(R.string.sentiment)
+                    "nutrition" -> getString(R.string.nutrition)
+                    "movement" -> getString(R.string.movement)
+                    else -> throw IllegalArgumentException("Unknown wellness name: $wellnessName")
+                }
                 view.findViewById<TextView>(wellnessMessage).text =
-                    getString(R.string.on_average_your_rating_is, pureWellnessName, ratingString)
+                    getString(R.string.on_average_your_rating_is, translatedWellnessName, ratingString)
             }
     }
 
