@@ -73,7 +73,7 @@ abstract class AppDatabase : RoomDatabase() {
                     "journal_database"
                 )
                     .addCallback(JournalDatabaseCallback(scope))
-                    .fallbackToDestructiveMigration() // TODO check if app crashes next time when reinstalling
+                    .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance
 
